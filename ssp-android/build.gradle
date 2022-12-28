@@ -56,7 +56,7 @@ class SSPFactory extends DefaultTask {
             printWriter.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>")
             printWriter.println("<resources>")
             for(int i=1;i<=positiveMax;i++){
-                printWriter.printf("\t<dimen name=\"_%dssp\">%.2f" + unit + "</dimen>\r\n",i,i)
+                printWriter.printf("\t<dimen name=\"_%dssp\">%d" + unit + "</dimen>\r\n",i,i)
             }
             printWriter.println("</resources>")
             printWriter.close()
@@ -83,6 +83,7 @@ class SSPFactory extends DefaultTask {
 }
 
 task createSSP(type: SSPFactory) {
+    
 }
 
 //uncomment next line to edit values
