@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
-apply plugin: 'signing'
 
 buildscript {
     repositories {
@@ -92,51 +91,17 @@ createSSP{
     positiveMax = 100//change to 600 or any other value if needed
 }
 
-publishing {
-    publications {
-        release(MavenPublication) {
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
 
-            artifactId = 'ssp-android'
-            groupId = 'com.intuit.ssp'
-            version = '1.1.0'
-            artifact("$buildDir/outputs/aar/ssp-android-release.aar")
-
-            pom {
-                name = 'ssp'
-                description = 'A scalable size unit for Andorid'
-                url = 'https://github.com/intuit/ssp'
-                licenses {
-                    license {
-                        name = 'The MIT License (MIT)'
-                        url = 'https://github.com/intuit/ssp/blob/master/LICENSE'
-                    }
-                }
-                developers {
-                    developer {
-                        id = developerID
-                        name = developerName
-                        email = developerEmail
-                    }
-                }
-                scm {
-                    connection = 'scm:git@github.com:intuit/ssp.git'
-                    developerConnection = 'scm:git@github.com:intuit/ssp.git'
-                    url = 'https://github.com/intuit/ssp'
-                }
-            }
-        }
-    }
-    repositories {
-        maven {
-            url sonatypeRepo
-            credentials {
-                username sonatypeUsername
-                password sonatypePassword
+                groupId = 'net.kdt.pojavlaunch'
+                artifactId = 'portrait-ssp'
+                version = '1.0.0'
             }
         }
     }
 }
 
-signing {
-    sign publishing.publications.release
-}
